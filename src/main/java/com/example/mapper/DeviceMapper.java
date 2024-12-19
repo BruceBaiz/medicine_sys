@@ -9,15 +9,18 @@ import java.util.List;
 public interface DeviceMapper {
 
     // 查询所有设备
-    public List<Device> selectAllDevice();
+    List<Device> selectAllDevice();
 
     // 根据设备id查询设备
-    public Device selectDeviceById(Integer id);
+    Device selectDeviceById(Integer id);
+
+    int updateDevice(Device device);
 
     // 添加设备
-    public int addDevice(Device device);
+    int insertDevice(Device device);
 
-    //
+    //删除设备
+    int deleteDeviceById(Integer id);
 
 
 }

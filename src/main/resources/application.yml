@@ -50,8 +50,7 @@ mybatis:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl  # 日志输出配置
   mapper-locations: classpath:/mappers/*.xml
-  type-aliases-package: com.baiz.pojo
-
+  type-aliases-package: com.example.entity
 
 
 logging:

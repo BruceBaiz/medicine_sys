@@ -13,6 +13,7 @@ public class User {
 //    private Timestamp updateTime;
     private Date createTime;
     private Date updateTime;
+    private Date deleteTime;
 
 }
 

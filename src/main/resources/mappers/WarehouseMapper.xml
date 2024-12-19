@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace = 接口的全限定符 -->
+<mapper namespace="com.example.mapper.WarehouseMapper">
+
+    <select id="selectAllWarehouse" resultType="Warehouse">
+        SELECT * FROM warehouse
+    </select>
+
+    <select id="selectWarehouseById" resultType="Warehouse">
+        SELECT * FROM warehouse WHERE id = #{id}
+    </select>
+
+    <update id="deleteWarehouseById">
+        update warehouse
+        set delete_time = CURRENT_TIMESTAMP
+        where id = #{id}
+    </update>
+
+    <update id="updateWarehouse">
+        update warehouse
+        <set>
+            <if test="warehouseName != null">
+                warehouse_name = #{warehouseName},
+            </if>
+            <if test="warehouseCode != null">
+                warehouse_code = #{warehouseCode},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="insertWarehouse">
+        insert into warehouse
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="warehouseName != null">
+                warehouse_name,
+            </if>
+            <if test="warehouseCode != null">
+                warehouse_code,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="warehouseName != null">
+                #{warehouseName},
+            </if>
+            <if test="warehouseCode != null">
+                #{warehouseCode},
+            </if>
+            <if test="createBy != null">
+                #{createBy},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>
