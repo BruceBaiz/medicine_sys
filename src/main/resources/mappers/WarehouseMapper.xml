@@ -9,7 +9,7 @@
         SELECT * FROM warehouse
     </select>
 
-    <select id="selectAllWarehouse" resultType="Warehouse">
+    <select id="selectWarehouseByPage" resultType="Warehouse">
         SELECT * FROM warehouse
         LIMIT #{limit} OFFSET #{offset}
     </select>

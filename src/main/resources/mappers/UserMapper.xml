@@ -6,7 +6,7 @@
 <mapper namespace="com.example.mapper.UserMapper">
 
     <insert id="register">
-        insert into users(username, password) values(#{username}, #{password})
+        insert into users(username, password) values (#{username}, #{password})
     </insert>
     <select id="login" resultType="com.example.Common.pojo.User">
         select * from users where username=#{username}

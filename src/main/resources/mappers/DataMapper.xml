@@ -5,30 +5,30 @@
 <!-- namespace = 接口的全限定符 -->
 <mapper namespace="com.example.mapper.DataMapper">
 
-    <select id="selectAllData" resultType="Data">
+    <select id="selectAllData" resultType="com.example.Common.pojo.Data">
         select * from data
     </select>
 
-    <select id="selectDataByPage" resultType="Data">
+    <select id="selectDataByPage" resultType="com.example.Common.pojo.Data">
         select * from data
         limit #{offset}, #{limit}
     </select>
 
-    <select id="selectDataByWarehouseName" resultType="Data">
+    <select id="selectDataByWarehouseName" resultType="com.example.Common.pojo.Data">
         select *
         from data
         join warehouse on data.warehouse_id = warehouse.id
         where warehouse.name like concat ('%', #{warehouseName}, '%')
     </select>
 
-    <select id="selectDataByDeviceName" resultType="Data">
+    <select id="selectDataByDeviceName" resultType="com.example.Common.pojo.Data">
         select *
         from data
         join device on data.device_id = device.id
         where device.device_name like concat ('%', #{deviceName}, '%')
     </select>
 
-    <select id="selectByCreateTimeRange" resultType="Data">
+    <select id="selectByCreateTimeRange" resultType="com.example.Common.pojo.Data">
         select *
         from data
         where create_time between #{startTime} and #{endTime}
@@ -40,7 +40,7 @@
             <if test="warehouseId != null">warehouse_id,</if>
             <if test="deviceId != null">device_id,</if>
             <if test="tempData != null">temp_data,</if>
-            <if test="humiData != null">humiData</if>
+            <if test="humiData != null">humi_data</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="warehouseId != null">#{warehouseId},</if>

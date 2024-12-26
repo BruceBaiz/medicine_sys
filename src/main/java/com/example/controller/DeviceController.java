@@ -56,7 +56,7 @@ public class DeviceController {
         return Result.error("插入失败");
     }
 
-    @GetMapping
+    @DeleteMapping
     public Result deleteDeviceById(Integer id) {
         int i = deviceService.deleteDeviceById(id);
         if (i == 1) {
