@@ -9,9 +9,6 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-   // 管理员查询所有用户
-   List<User> selectAllUser();
-
    User login(String username);
 
    User register(UserRegisterDTO user);
