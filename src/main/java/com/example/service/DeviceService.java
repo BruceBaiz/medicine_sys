@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.entity.Device;
+import com.example.Common.pojo.Device;
 
 import java.util.List;
 
@@ -8,6 +8,12 @@ public interface DeviceService {
 
     // 查询所有设备
     List<Device> selectAllDevice();
+
+    List<Device> selectDeviceByPage(int pageNum, int pageSize);
+
+    List<Device> selectDeviceByName(String deviceName);
+
+    List<Device> selectDeviceByWarehouseName(String warehouseName);
 
     // 根据设备id查询设备
     Device selectDeviceById(Integer id);

@@ -9,6 +9,21 @@
         SELECT * FROM warehouse
     </select>
 
+    <select id="selectAllWarehouse" resultType="Warehouse">
+        SELECT * FROM warehouse
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <select id="selectWarehouseByName" resultType="Warehouse">
+        SELECT * FROM warehouse
+        WHERE warehouse_name LIKE CONCAT('%', #{warehouse_name}, '%')
+    </select>
+
+    <select id="selectWarehouseByCode" resultType="Warehouse">
+        select * from warehouse
+        where warehouse_code LIKE CONCAT('%', #{warehouse_name}, '%')
+    </select>
+
     <select id="selectWarehouseById" resultType="Warehouse">
         SELECT * FROM warehouse WHERE id = #{id}
     </select>

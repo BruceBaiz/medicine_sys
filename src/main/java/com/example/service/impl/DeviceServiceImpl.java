@@ -1,6 +1,6 @@
 package com.example.service.impl;
 
-import com.example.entity.Device;
+import com.example.Common.pojo.Device;
 import com.example.mapper.DeviceMapper;
 import com.example.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,22 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     public List<Device> selectAllDevice() {
         return deviceMapper.selectAllDevice();
+    }
+
+    @Override
+    public List<Device> selectDeviceByPage(int pageNum, int pageSize) {
+        int offset = (pageNum -1) * pageSize;
+        return deviceMapper.selectDeviceByPage(offset, pageSize);
+    }
+
+    @Override
+    public List<Device> selectDeviceByName(String deviceName) {
+        return deviceMapper.selectDeviceByName(deviceName);
+    }
+
+    @Override
+    public List<Device> selectDeviceByWarehouseName(String warehouseName) {
+        return deviceMapper.selectDeviceByWarehouseName(warehouseName);
     }
 
     @Override

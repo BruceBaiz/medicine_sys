@@ -12,8 +12,22 @@
     <select id="selectDeviceById" resultType="Device">
         select * from device where id = #{id}
     </select>
+    
+    <select id="selectDeviceByPage" resultType="Device">
+        select * from device
+        limit #{offset}, #{limit}
+    </select>
+    
+    <select id="selectDeviceByName" resultType="Device">
+        select * from device
+        where device_name like concat('%', #{deviceName}, '%')
+    </select>
 
-
+   <select id="selectDeviceByWarehouseName" resultType="Device">
+       select * from device
+       join warehouse on device.warehouse_id = warehouse.id
+       where warehouse_name like concat('%', #{warehouseName}, '%')
+   </select>
 
     <update id="updateDevice" parameterType="Device">
         update device

@@ -1,6 +1,6 @@
 package com.example.service.impl;
 
-import com.example.entity.Warehouse;
+import com.example.Common.pojo.Warehouse;
 import com.example.mapper.WarehouseMapper;
 import com.example.service.WarehouseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,22 @@ public class WarehouseServiceImpl implements WarehouseService {
 
     @Autowired
     private WarehouseMapper warehouseMapper;
+
+    @Override
+    public List<Warehouse> selectWarehouseByPage(int pageNum, int pageSize) {
+        int offset = (pageNum - 1) * pageSize;
+        return warehouseMapper.selectWarehouseByPage(offset, pageSize);
+    }
+
+    @Override
+    public List<Warehouse> selectWarehouseByName(String warehouseName) {
+        return warehouseMapper.selectWarehouseByName(warehouseName);
+    }
+
+    @Override
+    public List<Warehouse> selectWarehouseByCode(String warehouseCode) {
+        return warehouseMapper.selectWarehouseByCode(warehouseCode);
+    }
 
     @Override
     public List<Warehouse> selectAllWarehouse() {

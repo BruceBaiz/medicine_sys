@@ -9,4 +9,53 @@
         select * from data
     </select>
 
+    <select id="selectDataByPage" resultType="Data">
+        select * from data
+        limit #{offset}, #{limit}
+    </select>
+
+    <select id="selectDataByWarehouseName" resultType="Data">
+        select *
+        from data
+        join warehouse on data.warehouse_id = warehouse.id
+        where warehouse.name like concat ('%', #{warehouseName}, '%')
+    </select>
+
+    <select id="selectDataByDeviceName" resultType="Data">
+        select *
+        from data
+        join device on data.device_id = device.id
+        where device.device_name like concat ('%', #{deviceName}, '%')
+    </select>
+
+    <select id="selectByCreateTimeRange" resultType="Data">
+        select *
+        from data
+        where create_time between #{startTime} and #{endTime}
+    </select>
+
+    <insert id="insertData">
+        insert into data
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="warehouseId != null">warehouse_id,</if>
+            <if test="deviceId != null">device_id,</if>
+            <if test="tempData != null">temp_data,</if>
+            <if test="humiData != null">humiData</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="warehouseId != null">#{warehouseId},</if>
+            <if test="deviceId != null">#{deviceId},</if>
+            <if test="tempData != null">#{tempData},</if>
+            <if test="humiData != null">#{humiData}</if>
+        </trim>
+    </insert>
+
+    <update id="deleteData">
+        update data
+        set delete_time = current_timestamp
+        where id = #{id}
+    </update>
+
+
+
 </mapper>

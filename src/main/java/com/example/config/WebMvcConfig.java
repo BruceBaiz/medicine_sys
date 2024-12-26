@@ -1,20 +1,34 @@
 package com.example.config;
 
-import com.example.interceptor.MyInterceptor;
+
+import com.example.interceptor.JwtTokenAdminInterceptor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
+
+/**
+ * 配置类，注册web层相关组件
+ */
 @Configuration
-public class WebMvcConfig implements WebMvcConfigurer {
+@Slf4j
+public class WebMvcConfig extends WebMvcConfigurationSupport {
 
-    // 配置拦截器
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new MyInterceptor())
+    @Autowired
+    private JwtTokenAdminInterceptor jwtTokenAdminInterceptor;
+
+    /**
+     * 注册自定义拦截器
+     *
+     * @param registry
+     */
+    protected void addInterceptors(InterceptorRegistry registry) {
+        /*        log.info("开始注册自定义拦截器...");*/
+        registry.addInterceptor(jwtTokenAdminInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/login", "/register", "/css/**", "/js/**", "/images/**");
+                .excludePathPatterns("/user/login");
     }
-
 
 }
